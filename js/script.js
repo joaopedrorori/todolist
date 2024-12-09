@@ -16,7 +16,6 @@ function adicionaTask(e) {
 
   const taskText = document.createElement("p");
   taskText.innerText = taskInputValue;
-  checkTaskInput.addEventListener("click", taskFinished);
 
   const rmvTaskBtn = document.createElement("button");
   rmvTaskBtn.innerText = "remove task";
@@ -27,13 +26,12 @@ function adicionaTask(e) {
   console.log(taskDivAmount);
 
   rmvTaskBtn.addEventListener("click", removeTask);
+  checkTaskInput.addEventListener("click", () =>
+    taskText.classList.toggle("finished-task")
+  );
 }
 
 function removeTask(e) {
   e.preventDefault();
   this.parentNode.remove();
-}
-
-function taskFinished() {
-  console.log(taskText);
 }
