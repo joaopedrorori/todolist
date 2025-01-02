@@ -1,6 +1,7 @@
 const taskInput = document.querySelector('[data-tasks="input"]');
 const addTaskBtn = document.querySelector('[data-tasks="button"]');
 const tasksDiv = document.querySelector(".tasks");
+const tasksArray = [];
 
 addTaskBtn.addEventListener("click", adicionaTask);
 
@@ -20,10 +21,26 @@ function adicionaTask(e) {
   const rmvTaskBtn = document.createElement("button");
   rmvTaskBtn.innerText = "remove task";
 
-  taskDiv.append(checkTaskInput, taskText, rmvTaskBtn);
-  tasksDiv.appendChild(taskDiv);
+  class TaskObject {
+    constructor(index, checkTaskInput, taskText, rmvTaskBtn) {
+      this.index = +index - 1;
+      this.checkInput = checkTaskInput;
+      this.text = taskText.innerText;
+      this.rmvBtn = rmvTaskBtn;
+    }
+  }
+  const currentTask = new TaskObject(
+    taskDivAmount,
+    checkTaskInput,
+    taskText,
+    rmvTaskBtn
+  );
+  tasksArray.push(currentTask);
+  console.log(tasksArray);
+  console.log(tasksArray.indexOf(currentTask));
 
-  console.log(taskDivAmount);
+  taskDiv.append(checkTaskInput, taskInputValue, rmvTaskBtn);
+  tasksDiv.appendChild(taskDiv);
 
   rmvTaskBtn.addEventListener("click", removeTask);
   checkTaskInput.addEventListener("click", () =>
@@ -34,4 +51,5 @@ function adicionaTask(e) {
 function removeTask(e) {
   e.preventDefault();
   this.parentNode.remove();
+  // const taskIndex =
 }
